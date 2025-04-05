@@ -1,0 +1,334 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local executorName = identifyexecutor() or "Unknown"
+
+local Window = Rayfield:CreateWindow({
+   Name = "Music Hub V4 (".. executorName ..")",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Music Hub V4",
+   LoadingSubtitle = "by AdorbsxPr3ppyVibes",
+   Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "Key is MusicHubV10", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"MusicHubV10"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+
+
+
+-- Home Tab
+local HomeTab = Window:CreateTab("User Info", 4483362458)
+
+local UserSection = HomeTab:CreateSection("User Information")
+
+
+
+HomeTab:CreateLabel("Hello, Welcome " .. game.Players.LocalPlayer.Name .. "!")
+HomeTab:CreateLabel("Username: " .. game.Players.LocalPlayer.Name)
+HomeTab:CreateLabel("Display Name: " .. game.Players.LocalPlayer.DisplayName)
+HomeTab:CreateLabel("User Id: " .. game.Players.LocalPlayer.UserId)
+HomeTab:CreateLabel("Account Age (Days): " .. game.Players.LocalPlayer.AccountAge)
+HomeTab:CreateLabel("Character Appearance ID: " .. game.Players.LocalPlayer.CharacterAppearanceId)
+
+local GameSection = HomeTab:CreateSection("Game Information")
+
+local GetName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+HomeTab:CreateLabel("Game Name: " .. GetName.Name)
+HomeTab:CreateLabel("Game ID: " .. game.PlaceId)
+HomeTab:CreateLabel("Job ID: " .. game.JobId)
+HomeTab:CreateLabel("Max Players: " .. game.Players.MaxPlayers)
+
+-- Discord Tab
+local DiscordTab = Window:CreateTab("Discord", 4483362458)
+DiscordTab:CreateLabel("Discord: robloxfan4449")
+DiscordTab:CreateLabel("Youtube: AdorbsxPr3ppyVibes")
+
+local function createMusicButton(tab, name, soundId, volume, pitch)
+    tab:CreateButton({
+        Name = name,
+        Callback = function()
+            local music = Instance.new("Sound", game.Workspace)
+            music.SoundId = soundId
+            music.Volume = volume or 10
+            music.Pitch = pitch or 1
+            music.Looped = false
+            music.PlayOnRemove = false
+            music:Play()
+        end
+    })
+end
+
+-- Music Tab (Page 1)
+local MusicTab = Window:CreateTab("Music Player", 4483362458)
+
+createMusicButton(MusicTab, "Martin Graff - Balance", "rbxassetid://7024183256")
+createMusicButton(MusicTab, "Cave Of The Darkness", "rbxassetid://1840001401")
+createMusicButton(MusicTab, "Fun Arcade", "rbxassetid://1843599021")
+createMusicButton(MusicTab, "Catnap", "rbxassetid://1837220411")
+createMusicButton(MusicTab, "Vintage", "rbxassetid://7029083554")
+createMusicButton(MusicTab, "Grant & Juneau", "rbxassetid://5410086062")
+createMusicButton(MusicTab, "Love Is", "rbxassetid://7029092469")
+createMusicButton(MusicTab, "Carissa", "rbxassetid://5410085602")
+createMusicButton(MusicTab, "Rockefeller Street", "rbxassetid://16831104459")
+createMusicButton(MusicTab, "desert star", "rbxassetid://5410084938", 1)
+createMusicButton(MusicTab, "Martin Graff - Balance Pitched", "rbxassetid://7024183256", 1, 2)
+createMusicButton(MusicTab, "ily Pitched", "rbxassetid://15957461869", 1, 2)
+createMusicButton(MusicTab, "ily", "rbxassetid://15957461869", 1)
+createMusicButton(MusicTab, "taco bot 3000", "rbxassetid://9245552700", 1)
+createMusicButton(MusicTab, "taco bot 3000 pitched", "rbxassetid://9245552700", 1, 2)
+createMusicButton(MusicTab, "raining tacos", "rbxassetid://142376088", 1)
+createMusicButton(MusicTab, "dion shiawase", "rbxassetid://5409360995", 1)
+createMusicButton(MusicTab, "dion shiawase Pitched", "rbxassetid://5409360995", 1, 2)
+createMusicButton(MusicTab, "cute music", "rbxassetid://1836519309", 1)
+
+-- Page 2 Tab
+local Page2Tab = Window:CreateTab("Page 2", 4483362458)
+local NormalElevatorSection = Page2Tab:CreateSection("The Normal Elevator")
+
+createMusicButton(Page2Tab, "leaked audio", "rbxassetid://9280071551", 1)
+createMusicButton(Page2Tab, "sharknado", "rbxassetid://9280550653", 5)
+createMusicButton(Page2Tab, "walkonwater", "rbxassetid://9248834984", 5)
+createMusicButton(Page2Tab, "no really - rust", "rbxassetid://272018606", 1)
+createMusicButton(Page2Tab, "his cute voice", "rbxassetid://528728818", 1)
+
+-- Page 3 Tab
+local Page3Tab = Window:CreateTab("Page 3", 4483362458)
+local LuckyBlocksSection = Page3Tab:CreateSection("lucky blocks battlegrounds")
+
+createMusicButton(Page3Tab, "tobu - reflection", "rbxassetid://11864859928", 1)
+
+-- Page 4 Tab
+local Page4Tab = Window:CreateTab("Page 4", 4483362458)
+local EpicMinigamesSection = Page4Tab:CreateSection("Epic Minigames")
+
+createMusicButton(Page4Tab, "EDM", "rbxassetid://5712170177", 10)
+createMusicButton(Page4Tab, "cookies3", "rbxassetid://467930343", 10)
+createMusicButton(Page4Tab, "cookies3", "rbxassetid://9072358844", 10)
+createMusicButton(Page4Tab, "village11", "rbxassetid://1956742789", 10)
+createMusicButton(Page4Tab, "village10", "rbxassetid://8239529234", 10)
+createMusicButton(Page4Tab, "violin", "rbxassetid://9008322471", 10)
+createMusicButton(Page4Tab, "robot", "rbxassetid://1658528204", 10)
+createMusicButton(Page4Tab, "ding", "rbxassetid://9008322471", 10)
+createMusicButton(Page4Tab, "village9", "rbxassetid://3101356184", 10)
+createMusicButton(Page4Tab, "pop", "rbxassetid://4943443478", 10)
+createMusicButton(Page4Tab, "cookies2", "rbxassetid://17354951973", 10)
+createMusicButton(Page4Tab, "village8", "rbxassetid://467893245", 10)
+createMusicButton(Page4Tab, "village7", "rbxassetid://473200103", 10)
+createMusicButton(Page4Tab, "Kaibu", "rbxassetid://9072425215", 10)
+eateMusicButton(Page4Tab, "village6", "rbxassetid://10104288949", 10)
+createMusicButton(Page4Tab, "village5", "rbxassetid://8996463280", 10)
+createMusicButton(Page4Tab, "village4", "rbxassetid://467770420", 10)
+createMusicButton(Page4Tab, "village3", "rbxassetid://1972541666", 10)
+createMusicButton(Page4Tab, "village2", "rbxassetid://6806252423", 10)
+createMusicButton(Page4Tab, "csong", "rbxassetid://467771555", 10)
+createMusicButton(Page4Tab, "cookies", "rbxassetid://10052894460", 10)
+createMusicButton(Page4Tab, "village", "rbxassetid://1619464946", 10)
+createMusicButton(Page4Tab, "slick", "rbxassetid://80027479231227", 10)
+createMusicButton(Page4Tab, "wave", "rbxassetid://467951285", 10)
+createMusicButton(Page4Tab, "cool audio", "rbxassetid:///8998283238", 10)
+createMusicButton(Page4Tab, "rolling", "rbxassetid:///9175990518", 10)
+createMusicButton(Page4Tab, "flying'n'Stuff", "rbxassetid:///467770923", 10)
+createMusicButton(Page4Tab, "snekkerbue", "rbxassetid://15644014995", 10)
+createMusicButton(Page4Tab, "ambient", "rbxassetid://17533676109", 10)
+createMusicButton(Page4Tab, "azure", "rbxassetid://17533676109", 10)
+createMusicButton(Page4Tab, "waterflame grind", "rbxassetid://17533676109", 10)
+createMusicButton(Page4Tab, "platformperil", "rbxassetid://17533676109", 10)
+createMusicButton(Page4Tab, "Rameses 2", "rbxassetid://9072359933", 10)
+createMusicButton(Page4Tab, "linefadding2", "rbxassetid://10104285557")
+createMusicButton(Page4Tab, "linefadding", "rbxassetid://467772163")
+createMusicButton(Page4Tab, "Zar", "rbxassetid://4980059256")
+createMusicButton(Page4Tab, "pink", "rbxassetid://8998282695")
+createMusicButton(Page4Tab, "idk", "rbxassetid://467974998")
+createMusicButton(Page4Tab, "moonlight", "rbxassetid://1961241743")
+createMusicButton(Page4Tab, "velocity", "rbxassetid://10104284161")
+createMusicButton(Page4Tab, "flute", "rbxassetid://467913387")
+createMusicButton(Page4Tab, "Upbeat A", "rbxassetid://9072359432")
+createMusicButton(Page4Tab, "Scared", "rbxassetid://10104284779")
+createMusicButton(Page4Tab, "metropolis", "rbxassetid://659727291")
+createMusicButton(Page4Tab, "eg", "rbxassetid://8996464109", 1)
+createMusicButton(Page4Tab, "miracle", "rbxassetid://1619501952", 1)
+createMusicButton(Page4Tab, "meow", "rbxassetid://467932279", 1)
+createMusicButton(Page4Tab, "pink", "rbxassetid://4681135952", 1)
+createMusicButton(Page4Tab, "staeam", "rbxassetid://4960289400", 1)
+createMusicButton(Page4Tab, "paeree", "rbxassetid://468621896", 1)
+createMusicButton(Page4Tab, "lane", "rbxassetid://8998281117", 1)
+createMusicButton(Page4Tab, "wayback", "rbxassetid://467942273", 10)
+createMusicButton(Page4Tab, "nautilus", "rbxassetid://9072367803", 10)
+createMusicButton(Page4Tab, "block", "rbxassetid://467916328", 10)
+createMusicButton(Page4Tab, "Colossal Assault", "rbxassetid://2343544260", 10)
+
+-- Page 5 Tab
+local Page5Tab = Window:CreateTab("Page 5", 4483362458)
+local Area17Section = Page5Tab:CreateSection("Area 17")
+
+
+
+createMusicButton(Page5Tab, "Breach", "rbxassetid://545296451", 10)
+
+
+local Page6Tab = Window:CreateTab("Page 6", 4483362458)
+local Section = Page6Tab:CreateSection("Slender")
+
+createMusicButton(Page6Tab, "1 Sound 2 Near", "rbxassetid://12306579170", 10)
+
+
+local Page7Tab = Window:CreateTab("Page 7", 4483362458)
+local Section = Page7Tab:CreateSection("Jailbreak")
+
+createMusicButton(Page7Tab, "Breach", "rbxassetid://9042159897", 10)
+
+local Page8Tab = Window:CreateTab("Exit Options", 4483362458)
+
+-- Create a button that exits the game
+Page8Tab:CreateButton({
+    Name = "Exit Game",
+    Callback = function()
+        game:Shutdown()
+    end
+})
+
+
+
+local MainTab = Window:CreateTab("Webhook Sender", 4483362458)
+
+local WebhookInput = MainTab:CreateInput({
+    Name = "Webhook URL",
+    PlaceholderText = "Enter your Discord webhook URL",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(Text)
+        -- Store the webhook URL for later use
+        _G.WebhookURL = Text
+    end,
+})
+
+local MessageInput = MainTab:CreateInput({
+    Name = "Message",
+    PlaceholderText = "Enter your message",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(Text)
+        -- Store the message for later use
+        _G.Message = Text
+    end,
+})
+
+local SendButton = MainTab:CreateButton({
+    Name = "Send Message",
+    Callback = function()
+        if _G.WebhookURL and _G.Message then
+            local http = game:GetService("HttpService")
+            local headers = {
+                ["Content-Type"] = "application/json"
+            }
+            local data = {
+                ["content"] = _G.Message
+            }
+            local body = http:JSONEncode(data)
+            
+            local response = request({
+                Url = _G.WebhookURL,
+                Method = "POST",
+                Headers = headers,
+                Body = body
+            })
+            
+            if response.StatusCode == 204 then
+                Rayfield:Notify({
+                    Title = "Success",
+                    Content = "Message sent successfully!",
+                    Duration = 3,
+                })
+            else
+                Rayfield:Notify({
+                    Title = "Error",
+                    Content = "Failed to send message. Status code: " .. response.StatusCode,
+                    Duration = 3,
+                })
+            end
+        else
+            Rayfield:Notify({
+                Title = "Error",
+                Content = "Please enter both Webhook URL and Message",
+                Duration = 3,
+            })
+        end
+    end,
+})
+
+
+
+local Tab = Window:CreateTab("Executor", 4483362458)
+
+local Input = Tab:CreateInput({
+   Name = "Script Input",
+   PlaceholderText = "Enter your script here",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Execute Script",
+   Callback = function()
+      local script = Input.CurrentValue
+      if script and script ~= "" then
+         loadstring(script)()
+      else
+         Rayfield:Notify({
+            Title = "Error",
+            Content = "No script entered!",
+            Duration = 3,
+            Image = 4483362458,
+         })
+      end
+   end,
+})
+
+local ClearButton = Tab:CreateButton({
+   Name = "Clear Input",
+   Callback = function()
+      Input:Set("")
+      Rayfield:Notify({
+         Title = "Cleared",
+         Content = "Input has been cleared",
+         Duration = 2,
+         Image = 4483362458,
+      })
+   end,
+})
+
+Rayfield:LoadConfiguration()
+
+
+local ExecutorTab = Window:CreateTab("Executor Name", 4483362458)
+local ExecutorSection = ExecutorTab:CreateSection("Detected Executor")
+
+ExecutorTab:CreateLabel("Executor: " .. executorName)
+
+ExecutorTab:CreateButton({
+    Name = "Copy Executor Name",
+    Callback = function()
+        setclipboard(executorName)
+    end
+})
